@@ -4,6 +4,14 @@ Subsystems represent and control mechanisms on the robot like the drivetrain, in
 
 Each subsystem holds all of the hardware that is physically on the mechanism, including motors, solenoids (pistons), and encoders.
 
+In this lab you'll be coding your own subsystems!
+
+## Day 1: Intake
+
+First, we're going to be coding an intake, which brings balls into the robot. The intake is has an arm that hangs in front of the robot with spinning wheels to force balls inwards, and this arm can retract to perpendicular.
+
+The intake has one NEO to drive the wheels on the arm and a double solenoid (two-way) that controls it extending or retracting.
+
 ## Hardware Classes
 
 ### CANSparkMax
