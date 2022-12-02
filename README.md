@@ -149,7 +149,7 @@ The intake has one NEO to drive the wheels on the arm and a double solenoid (two
         </tr>
         <tr>
             <td>get()</td>
-            <td>Returns which state the solenoid is in (extended or retracted).</td>
+            <td>Returns which state the solenoid is in (extended or retracted). If it is extended, the return value will be Value.kForward, otherwise kBackward.</td>
             <td>Value</td>
         </tr>
         <tr>
