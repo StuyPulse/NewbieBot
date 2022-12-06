@@ -45,45 +45,28 @@ The intake has one NEO to drive the wheels on the arm and a double solenoid (two
 
 [Here](src/main/java/com/stuypulse/robot/subsystems/Intake.java) is your intake file.
 
-### Methods Intake.java should have
+### Intake.java Template
 
-<table>
-    <thead>
-        <tr>
-            <th>Method</th>
-            <th>Description</th>
-            <th>Returns</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>extend()</td>
-            <td>Extends the intake's solenoid, bringing the intake down.</td>
-            <td>void</td>
-        </tr>
-        <tr>
-            <td>retract()</td>
-            <td>Retracts the intake's solenoid, bringing the intake up.</td>
-            <td>void</td>
-        </tr>
-        <tr>
-            <td>stop()</td>
-            <td>Stops the intake's drive motor (stop intaking balls).</td>
-            <td>void</td>
-        </tr>
-        <tr>
-            <td>acquire()</td>
-            <td>Run the drive motor forwards, bringing balls into the robot with the rollers.</td>
-            <td>void</td>
-        </tr>
-        <tr>
-            <td>deacquire()</td>
-            <td>Run the drive motor backwards, pushing balls out of the robot with the rollers.</td>
-            <td>void</td>
-        </tr>
-    </tbody>
-</table>
+```java
+public class Intake extends SubsystemBase {
 
+    CANSparkMax motor;
+    DoubleSolenoid piston;
+    
+    // initialize your motor and piston in here!
+    public Intake() {}
+    
+    // puts the intake down by extending the piston
+    public void extend() {}
+    // brings the intake up by retracting the piston
+    public void retract() {}
+    // runs the motor at full speed to spin wheels that bring balls in the robot
+    public void acquire() {}
+    // runs the motor backwards spin wheels that spit balls out of the robot
+    public void deacquire() {}
+    
+}
+```
 
 ## Hardware Classes
 
