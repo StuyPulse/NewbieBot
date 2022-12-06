@@ -64,6 +64,8 @@ public class Intake extends SubsystemBase {
     public void acquire() {}
     // runs the motor backwards spin wheels that spit balls out of the robot
     public void deacquire() {}
+    // stop the drive motor so that balls are not brought in or out
+    public void stop() {}
     
 }
 ```
