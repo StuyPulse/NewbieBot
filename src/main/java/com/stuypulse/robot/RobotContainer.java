@@ -5,8 +5,10 @@
 
 package com.stuypulse.robot;
 
+import com.stuypulse.robot.commands.IntakeCommands;
 import com.stuypulse.robot.commands.auton.DoNothingAuton;
 import com.stuypulse.robot.constants.Ports;
+import com.stuypulse.robot.subsystems.Intake;
 import com.stuypulse.stuylib.input.Gamepad;
 import com.stuypulse.stuylib.input.gamepads.AutoGamepad;
 
@@ -21,6 +23,7 @@ public class RobotContainer {
     public final Gamepad operator = new AutoGamepad(Ports.Gamepad.OPERATOR);
     
     // Subsystem
+    public final Intake intake = new Intake();
 
     // Autons
     private static SendableChooser<Command> autonChooser = new SendableChooser<>();
@@ -43,7 +46,15 @@ public class RobotContainer {
     /*** BUTTONS ***/
     /***************/
 
-    private void configureButtonBindings() {}
+    private void configureButtonBindings() {
+        operator.getRightTriggerButton()
+            .whenPressed(IntakeCommands.Extend(intake))
+            .whenPressed(IntakeCommands.Acquire(intake))
+            .whenReleased(IntakeCommands.Retract(intake));
+
+        operator.getLeftTriggerButton()
+            .whenPressed(IntakeCommands.Deacquire(intake));
+    }
 
     /**************/
     /*** AUTONS ***/
