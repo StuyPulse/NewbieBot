@@ -94,11 +94,6 @@ sgn: the sign function (-1 if negative, 1 if positive)<br>
 d with one dot: the target rpm of the motor<br>
 d with two dots: the target acceleration of the motor (we'll ignore this)<br>
 
-```java
-// example code
-motor.setVoltage(Math.signum(rpm) * kS + rpm * kV);
-```
-
 ### Encoders
 
 In the intake, we didn't need to know the speed that the motor was running at - we just wanted to run it at full speed. But in the shooter, we might want to know if the RPM is what we're expecting it to be to be. We can do this with Encoders. As the motor turns, the encoder reads pulses and can calculate the number of rotations the motor has gone.
