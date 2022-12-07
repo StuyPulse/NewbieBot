@@ -76,11 +76,11 @@ public class Intake extends SubsystemBase {
 
 ## Day 2: Shooter
 
-The shooter is another important mechanism on the robot, and controlling it requires some new algorithms compared to our intake code. The shooter has a flywheel that speeds balls up and ejects them out of the robot. It also has a feeder wheel that pushes balls up towards the flywheel and a solenoid that extends to change the shooting angle. If the solenoid is off, the ejected balls won't be curved downwards as much, raising the shooter angle.
+The shooter is another important mechanism on the robot, and controlling it requires some new algorithms compared to our intake code. The shooter has a flywheel that speeds balls up and ejects them out of the robot. It also has a feeder wheel that pushes balls up towards the flywheel and a solenoid that extends to change the shooting angle. The last piece of hardware it has is a solenoid (piston) that changes the angle of the shooter.
 
-The shooter is composed of 3 motors (CANSparkMax) and a normal solenoid (not DoubleSolenoid, just Solenoid). One of these motors spins the feeder wheel, which pushes balls up towards the shooter flywheel, while the other two motors work together to spin the shooter flywheel. Last, the solenoid controls extending the hood, which changes the shooting angle.
+The shooter has 3 NEOs and a normal solenoid (not DoubleSolenoid, just Solenoid). One of these motors spins the feeder wheel, which pushes balls up towards the shooter flywheel, while the other two motors work together to spin the shooter flywheel. Last, the solenoid controls extending the hood, which changes the shooting angle.
 
-With the tools we have right now, keeping a flywheel at a certain RPM isn't possible. The first tool we'll need is a <b>Feedforward</b>.
+With the tools we have right now, keeping a flywheel at a certain RPM isn't possible. The first tool we'll need is <b>Feedforward</b>.
 
 ### Controlling the RPM with Feedforward
 
@@ -101,11 +101,7 @@ motor.setVoltage(Math.signum(rpm) * kS + rpm * kV);
 
 ### Encoders
 
-In the intake, we didn't need to know the speed that the motor was running at - we just wanted to run it at full speed. But in the shooter, we might want to know if the RPM is what we're expecting it to be to be. We can do this with Encoders. As the motor turns, the encoder reads pulses and can calculate the number of rotations the motor has gone. 
-
-![Analog Encoder Example](images/opticalencoder.jpg)
-
-An example encoder: the light beam pulses the sensor and can be read by software (not how the encoders on our robot work)
+In the intake, we didn't need to know the speed that the motor was running at - we just wanted to run it at full speed. But in the shooter, we might want to know if the RPM is what we're expecting it to be to be. We can do this with Encoders. As the motor turns, the encoder reads pulses and can calculate the number of rotations the motor has gone.
 
 ### Shooter.java
 
