@@ -27,7 +27,7 @@ Motor controllers are how robot code interfaces with motors. They're the middlem
 
 Solenoids are electronic components that control the air pressure in a piston, causing it to extend or retract.
 
-There are two types of solenoids: normal solenoids and double solenoids. <b>Double</b> solenoids can force the piston to be extended and retracted. <b>Normal</b> solenoids can force the piston to extend, but when the retract they don't force the piston to stay retracted.
+There are two types of solenoids: normal solenoids and double solenoids. <b>Double</b> solenoids can force the piston to be extended, retracted, or do nothing. <b>Normal</b> solenoids can only force the solenoid to be extended or retracted.
 
 ![piston](images/piston.webp)
 
@@ -43,7 +43,7 @@ In this lab you'll be coding your own subsystems!
 
 First, we're going to be coding an intake, which brings balls into the robot. The intake is has an arm that hangs in front of the robot with spinning wheels to force balls inwards, and this arm can retract to perpendicular.
 
-The intake has one NEO to drive the wheels on the arm and a double solenoid (two-way) that controls it extending or retracting.
+The intake has one NEO to drive the wheels on the arm and a double solenoid that controls it extending or retracting.
 
 ### Intake.java Template
 
@@ -262,12 +262,12 @@ public class Shooter extends SubsystemBase {
         </tr>
         <tr>
             <td>get()</td>
-            <td>Returns which state the solenoid is in (extended or retracted). If it is extended, the return value will be Value.kForward, otherwise Value.kReverse.</td>
+            <td>Returns which state the solenoid is in (extended or retracted). If it is extended, the return value will be Value.kForward, Value.kReverse, or Value.kOff.</td>
             <td>Value</td>
         </tr>
         <tr>
-            <td>toggle()</td>
-            <td>Toggles the solenoid between extended and retracted.</td>
+            <td>set(value)</td>
+            <td>Sets the solenoid to be either Value.kForward, Value.kReverse, or Value.kOff</td>
             <td>void</td>
         </tr>
     </tbody>
