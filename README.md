@@ -76,36 +76,36 @@ public class Intake extends SubsystemBase {
 
 ## Day 2: Shooter
 
-The shooter is another important mechanism on the robot, and controlling it requires some new algorithms compared to our intake code. The shooter has a flywheel, a heavy rotating wheel that maintains its momentum, meaning that it can spin extremely fast without the motor doing as much work to keep it at speed. This flywheel brings balls up to a high speed and pushes them upwards against the hood and out of the robot. It also has a feeder wheel that pushes balls up towards the flywheel and a solenoid that extends to change the shooting angle. If the solenoid is extended, the hood will curve down less, meaning that the shooter will shoot in a higher angle.
+The shooter is another important mechanism on the robot, and controlling it requires some new algorithms compared to our intake code. The shooter has a flywheel that speeds balls up and ejects them out of the robot. It also has a feeder wheel that pushes balls up towards the flywheel and a solenoid that extends to change the shooting angle. If the solenoid is off, the ejected balls won't be curved downwards as much, raising the shooter angle.
 
 The shooter is composed of 3 motors (CANSparkMax) and a normal solenoid (not DoubleSolenoid, just Solenoid). One of these motors spins the feeder wheel, which pushes balls up towards the shooter flywheel, while the other two motors work together to spin the shooter flywheel. Last, the solenoid controls extending the hood, which changes the shooting angle.
 
-With the tools we have right now, keeping a flywheel at a certain RPM isn't possible. The first tool we'll need is an <b>Encoder</b>.
-
-### Encoders
-
-In the intake, we didn't need to know the speed that the motor was running at - we just wanted to run it at full speed. But the shooter needs to make sure that the flywheel as at the exact right RPM so that the ball goes right in the target. To do this, we need to know what RPM the flywheel (by extension, motor) is running at. Encoders let us do this. As the motor turns, the encoder reads pulses and can calculate the number of rotations the motor has gone. 
-
-![Analog Encoder Example](images/opticalencoder.jpg)
-
-An example encoder: the light beam pulses the sensor and can be read by software (not how the encoders on our robot work)
+With the tools we have right now, keeping a flywheel at a certain RPM isn't possible. The first tool we'll need is a <b>Feedforward</b>.
 
 ### Controlling the RPM with Feedforward
 
-Now that we can get the RPM of the motor (the getVelocity() method of the RelativeEncoder class), we need a way to control the motor. We're going to be using the Feedforward algorithm which <b>calculates the voltage that the motor should run at given the target RPM</b>. In the future we're going to use another class that calculates this for us, but today we're going to implement the algorithm on our own.
+We're going to be using the Feedforward algorithm which <b>calculates the voltage that the motor should run at given the target RPM</b>. In the future we're going to use another class that calculates this for us, but today we're going to implement the algorithm on our own.
 
 ![The feedforward equation](images/ff.jpg)
 
 V: output voltage to feed to the motor<br>
 kS, kV, kA: constant values (we will give you these)<br>
 sgn: the sign function (-1 if negative, 1 if positive)<br>
-d with one dot: the rpm of the motor<br>
-d with two dots: the acceleration of the motor (we'll ignore this)<br>
+d with one dot: the target rpm of the motor<br>
+d with two dots: the target acceleration of the motor (we'll ignore this)<br>
 
 ```java
 // example code
 motor.setVoltage(Math.signum(rpm) * kS + rpm * kV);
 ```
+
+### Encoders
+
+In the intake, we didn't need to know the speed that the motor was running at - we just wanted to run it at full speed. But in the shooter, we might want to know if the RPM is what we're expecting it to be to be. We can do this with Encoders. As the motor turns, the encoder reads pulses and can calculate the number of rotations the motor has gone. 
+
+![Analog Encoder Example](images/opticalencoder.jpg)
+
+An example encoder: the light beam pulses the sensor and can be read by software (not how the encoders on our robot work)
 
 ### Shooter.java
 
@@ -148,7 +148,7 @@ public class Shooter extends SubsystemBase {
     public void retractHood() {}
 
     // a special method that's run by the robot every 0.02 seconds
-    // set the voltage of the motors in here (calculate feedforward here too!)
+    // set the voltage of the motors in here using the feedforward equation!
     public void periodic() {}
 }
 ```
