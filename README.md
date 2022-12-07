@@ -136,10 +136,10 @@ public class Shooter extends SubsystemBase {
     public Shooter() {}
 
     // sets the RPM that the shooter is trying to reach
-    public void setTargetRPM(double rpm) {}
-
-    // returns the RPM that the motor is moving at
-    public double getRPM() {}
+    public void setShooterRPM(double rpm) {}
+    
+    // sets the RPM that the feeder is trying to reach
+    public void setFeederRPM(double rpm) {}
 
     // extend the hood solenoid to increase the shooter angle
     public void extendHood() {}
