@@ -11,6 +11,7 @@ Motors are one of the most common components on the robot. They turn voltage int
 #### NEO
 
 ![NEO Motor](images/neo.jpg)
+
 We use NEOs everywhere on our robot, so its good to be familiar with how to use them in code.
 ### Motor Controllers
 
@@ -19,6 +20,7 @@ Motor controllers are how robot code interfaces with motors. They're the middlem
 #### CANSparkMax
 
 ![CANSparkMax](images/cansparkmax.jpg)
+
 `CANSparkMax` is the class/type in java used to control NEO motors.
 
 ### Solenoids
@@ -69,6 +71,37 @@ public class Intake extends SubsystemBase {
     
 }
 ```
+
+## Day 2: Shooter
+
+The shooter is another important mechanism on the robot, and controlling it requires some new algorithms compared to the intake. The shooter has a flywheel, a heavy rotating wheel that maintains its momentum, meaning that it can spin extremely fast without the motor doing as much work to keep it at speed. This flywheel brings balls up to a high speed and pushes them upwards against the hood and out of the robot.
+
+The shooter is composed of 3 motors (CANSparkMax) and a normal solenoid (not DoubleSolenoid, just Solenoid). One of these motors spins the feeder wheel, which pushes balls up towards the shooter flywheel, while the other two motors work together to spin the shooter flywheel. Last, the solenoid controls extending the hood, which changes the shooting angle. If the solenoid is extended, the hood will curve down less, meaning that the shooter will shoot in a higher angle.
+
+## Ports
+
+<table>
+    <thead>
+        <tr>
+            <th>Hardware</tr>
+            <th>Port</tr>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Intake motor (CANSparkMax)</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td>Intake DoubleSolenoid extend port</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Intake DoubleSolenoid retract port</td>
+            <td>3</td>
+        </tr>
+    </tbody>
+</table>
 
 ## Hardware Classes
 
