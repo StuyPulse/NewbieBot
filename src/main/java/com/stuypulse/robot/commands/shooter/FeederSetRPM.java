@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 public class FeederSetRPM extends InstantCommand {
 
     private final Shooter shooter;
-    private final Number targetRPM;
+    private final double targetRPM;
 
-    public FeederSetRPM(Shooter shooter, Number targetRPM) {
+    public FeederSetRPM(Shooter shooter, double targetRPM) {
         this.shooter = shooter;
         this.targetRPM = targetRPM;
         addRequirements(shooter);

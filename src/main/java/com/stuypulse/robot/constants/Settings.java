@@ -14,13 +14,4 @@ import com.stuypulse.stuylib.network.SmartNumber;
  * We use StuyLib's SmartNumber / SmartBoolean in order to have tunable
  * values that we can edit on Shuffleboard.
  */
-public interface Settings {
-
-    public interface Shooter {
-
-        SmartNumber PAD_RPM = new SmartNumber("Shooter/Pad RPM", 3650);
-        SmartNumber RING_RPM = new SmartNumber("Shooter/Ring RPM", 2950);
-        SmartNumber FENDER_RPM = new SmartNumber("Shooter/Fender RPM", 2500);
-        SmartNumber FEEDER_MULTIPLER = new SmartNumber("Shooter/Feeder Multipler", 0.9);
-	}
-}
+public interface Settings {}

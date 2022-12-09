@@ -7,8 +7,10 @@ package com.stuypulse.robot;
 
 import com.stuypulse.robot.commands.IntakeCommands;
 import com.stuypulse.robot.commands.auton.DoNothingAuton;
+import com.stuypulse.robot.commands.shooter.ShooterSetRPM;
 import com.stuypulse.robot.constants.Ports;
 import com.stuypulse.robot.subsystems.Intake;
+import com.stuypulse.robot.subsystems.Shooter;
 import com.stuypulse.stuylib.input.Gamepad;
 import com.stuypulse.stuylib.input.gamepads.AutoGamepad;
 
@@ -24,6 +26,7 @@ public class RobotContainer {
     
     // Subsystem
     public final Intake intake = new Intake();
+    public final Shooter shooter = new Shooter();
 
     // Autons
     private static SendableChooser<Command> autonChooser = new SendableChooser<>();
@@ -47,6 +50,7 @@ public class RobotContainer {
     /***************/
 
     private void configureButtonBindings() {
+        // Intake //
         operator.getRightTriggerButton()
             .whenPressed(IntakeCommands.Extend(intake))
             .whenPressed(IntakeCommands.Acquire(intake))
@@ -54,6 +58,16 @@ public class RobotContainer {
 
         operator.getLeftTriggerButton()
             .whenPressed(IntakeCommands.Deacquire(intake));
+        
+        // Shooter
+        operator.getLeftBumper()
+            .whenPressed(new ShooterSetRPM(shooter, 0));
+        operator.getTopButton()
+            .whenPressed(new ShooterSetRPM(shooter, 0));
+        operator.getBottomButton()
+            .whenPressed(new ShooterSetRPM(shooter, 0));
+        operator.getRightBumper()
+            .whenPressed(new ShooterSetRPM(shooter, 0));
     }
 
     /**************/
