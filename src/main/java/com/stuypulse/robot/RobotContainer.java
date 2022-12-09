@@ -54,12 +54,14 @@ public class RobotContainer {
         operator.getRightTriggerButton()
             .whenPressed(IntakeCommands.Extend(intake))
             .whileHeld(IntakeCommands.Acquire(intake))
-            .whenReleased(IntakeCommands.Retract(intake));
+            .whenReleased(IntakeCommands.Retract(intake))
+            .whenReleased(IntakeCommands.Stop(intake));
 
         operator.getLeftTriggerButton()
             .whenPressed(IntakeCommands.Extend(intake))
             .whileHeld(IntakeCommands.Deacquire(intake))
-            .whenReleased(IntakeCommands.Retract(intake));
+            .whenReleased(IntakeCommands.Retract(intake))
+            .whenReleased(IntakeCommands.Stop(intake));
         
         // Shooter
         operator.getLeftBumper()
