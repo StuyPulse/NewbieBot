@@ -5,11 +5,12 @@ import com.stuypulse.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 
 public class IntakeCommands {
 
     public static CommandBase Acquire(Intake intake) {
-        return new RunCommand(intake::acquire, intake).andThen(intake::stop);
+        return new StartEndCommand(intake::acquire, intake::stop, intake);
     }
 
     public static CommandBase AcquireForever(Intake intake) {
@@ -17,7 +18,7 @@ public class IntakeCommands {
     }
 
     public static CommandBase Deacquire(Intake intake) {
-        return new RunCommand(intake::deacquire, intake).andThen(intake::stop);
+        return new StartEndCommand(intake::deacquire, intake::stop, intake);
     }
 
     public static CommandBase DeacquireForever(Intake intake) {
