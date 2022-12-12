@@ -5,7 +5,10 @@
 
 package com.stuypulse.robot;
 
-import com.stuypulse.robot.commands.IntakeCommands;
+import com.stuypulse.robot.commands.intake.IntakeExtend;
+import com.stuypulse.robot.commands.intake.IntakeRetract;
+import com.stuypulse.robot.commands.intake.IntakeAcquire;
+import com.stuypulse.robot.commands.intake.IntakeDeacquire;
 import com.stuypulse.robot.commands.auton.DoNothingAuton;
 import com.stuypulse.robot.commands.shooter.ShooterSetRPM;
 import com.stuypulse.robot.constants.Ports;
@@ -52,14 +55,14 @@ public class RobotContainer {
     private void configureButtonBindings() {
         // Intake //
         operator.getRightTriggerButton()
-            .whenPressed(IntakeCommands.Extend(intake))
-            .whileHeld(IntakeCommands.Acquire(intake))
-            .whenReleased(IntakeCommands.Retract(intake));
+            .whenPressed(new IntakeExtend(intake))
+            .whileHeld(new IntakeAcquire(intake))
+            .whenReleased(new IntakeRetract(intake));
 
         operator.getLeftTriggerButton()
-            .whenPressed(IntakeCommands.Extend(intake))
-            .whileHeld(IntakeCommands.Deacquire(intake))
-            .whenReleased(IntakeCommands.Retract(intake));
+            .whenPressed(new IntakeExtend(intake))
+            .whileHeld(new IntakeDeacquire(intake))
+            .whenReleased(new IntakeRetract(intake));
         
         // Shooter
         operator.getLeftBumper()
