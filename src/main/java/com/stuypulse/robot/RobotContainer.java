@@ -53,26 +53,7 @@ public class RobotContainer {
     /***************/
 
     private void configureButtonBindings() {
-        // Intake //
-        operator.getRightTriggerButton()
-            .whenPressed(new IntakeExtend(intake))
-            .whileHeld(new IntakeAcquire(intake))
-            .whenReleased(new IntakeRetract(intake));
 
-        operator.getLeftTriggerButton()
-            .whenPressed(new IntakeExtend(intake))
-            .whileHeld(new IntakeDeacquire(intake))
-            .whenReleased(new IntakeRetract(intake));
-        
-        // Shooter
-        operator.getLeftBumper()
-            .whenPressed(new ShooterSetRPM(shooter, 0));
-        operator.getTopButton()
-            .whenPressed(new ShooterSetRPM(shooter, 0));
-        operator.getBottomButton()
-            .whenPressed(new ShooterSetRPM(shooter, 0));
-        operator.getRightBumper()
-            .whenPressed(new ShooterSetRPM(shooter, 0));
     }
 
     /**************/
