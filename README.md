@@ -2,7 +2,11 @@
 
 In this lab, you'll be learning about common robot hardware, subsystems, and how to write robot code!
 
-## Robot Hardware
+<details>
+<summary>
+<h2>Robot Hardware</h2>
+</summary>
+<br>
 
 ### Motors
 
@@ -31,6 +35,8 @@ There are two types of solenoids: normal solenoids and double solenoids. <b>Doub
 
 ![piston](images/piston.webp)
 
+</details>
+
 ## Subsystems
 
 Subsystems represent and control mechanisms on the robot like the drivetrain, intake, and shooter. Subsystems are some of the most important parts of our robot code.
@@ -39,7 +45,11 @@ In code, a subsystem is a class that has fields for hardware that is physically 
 
 In this lab you'll be coding your own subsystems!
 
-## Day 1: Intake
+<details>
+<summary>
+<h2>Intake</h2>
+</summary>
+<br>
 
 First, we're going to be coding an intake, which brings balls into the robot. The intake is has an arm that hangs in front of the robot with spinning wheels to force balls inwards, and this arm can retract to perpendicular.
 
@@ -74,7 +84,13 @@ public class Intake extends SubsystemBase {
 }
 ```
 
-## Day 2: Shooter
+</details>
+
+<details>
+<summary>
+<h2>Shooter and Feedforward</h2>
+</summary>
+<br>
 
 The shooter is another important mechanism on the robot, and controlling it requires some new algorithms compared to our intake code. The shooter has a flywheel that speeds balls up and ejects them out of the robot. It also has a feeder wheel that pushes balls up towards the flywheel and a solenoid that extends to change the shooting angle. The last piece of hardware it has is a solenoid (piston) that changes the angle of the shooter.
 
@@ -121,6 +137,9 @@ public class Shooter extends SubsystemBase {
 
     RelativeEncoder shooterEncoder;
     RelativeEncoder feederEncoder;
+    
+    double targetShooterRPM;
+    double targetFeederRPM;
 
     Solenoid hoodPiston;
 
@@ -144,6 +163,7 @@ public class Shooter extends SubsystemBase {
 }
 ```
 
+</details>
 
 ## Ports
 
